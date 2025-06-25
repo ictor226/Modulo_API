@@ -1,5 +1,5 @@
 # Modulo_API
-# 📘 Projeto: ModuloAPI - Web API com .NET
+# Projeto: ModuloAPI - Web API com .NET
 
 ### 🧾 Descrição
 
@@ -14,18 +14,21 @@ A API contém:
 
 ---
 
-### 💻 Comandos Utilizados no Terminal
+### Comandos Utilizados no Terminal
 
 ```bash
 # Criar o projeto Web API
 dotnet new webapi
+```
 
 # Executar com hot reload (atualização automática ao salvar)
+```bash
 dotnet watch run
-
-📂 Estrutura do Projeto e Explicações
+```
+# Estrutura do Projeto e Explicações
 🔧 Program.cs
 Responsável por iniciar o servidor, adicionar os serviços (Controllers e Swagger), configurar HTTPS e o pipeline da aplicação.
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -43,8 +46,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
-🌦️ WeatherForecastController.cs
+```
+# 🌦️ WeatherForecastController.cs
 Controller gerado automaticamente. Retorna uma previsão do tempo simulada para os próximos 5 dias:
+```csharp
 [HttpGet(Name = "GetWeatherForecast")]
 public IEnumerable<WeatherForecast> Get()
 {
@@ -55,8 +60,10 @@ public IEnumerable<WeatherForecast> Get()
         Summary = Summaries[Random.Shared.Next(Summaries.Length)]
     }).ToArray();
 }
-📄 WeatherForecast.cs
+```
+# WeatherForecast.cs
 Modelo que define os dados de previsão do tempo:
+```csharp
 public class WeatherForecast
 {
     public DateTime Date { get; set; }
@@ -64,8 +71,10 @@ public class WeatherForecast
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     public string? Summary { get; set; }
 }
-👤 UsuarioController.cs
+```
+# 👤 UsuarioController.cs
 Controller personalizado com dois endpoints:
+```csharp
 // Exibe a data e hora atual
 [HttpGet("obterDataHoraAtua")]
 public IActionResult ObterDataHora()
@@ -85,25 +94,31 @@ public IActionResult Apresentar(string nome)
     var mensagem = $"ola {nome}, seja bem vindo!";
     return Ok(new { mensagem });
 }
-🧪 Testando a API com Swagger
+```
+# Testando a API com Swagger
 1 Execute a API com:
+```bash
 dotnet watch run
+```
 2 Acesse no navegador:
+```bash
 https://localhost:{porta}/swagger
+```
 3 Teste os endpoints disponíveis:
-GET /Usuario/obterDataHoraAtua
 
-GET /Usuario/Apresentar/{nome}
+- **GET /Usuario/obterDataHoraAtua**
+- GET /Usuario/Apresentar/{nome}
+- GET /WeatherForecast
 
-GET /WeatherForecast
-📌 Observações Finais
+
+# 📌 Observações Finais
 Necessário ter instalado o .NET SDK 6 ou superior.
 
 O Swagger facilita o teste e documentação dos endpoints.
 
 O comando dotnet watch run é ideal para desenvolvimento com hot reload.
 
-🧠 Objetivo de Aprendizado
+# Objetivo de Aprendizado
 Criar Web APIs com ASP.NET Core
 
 Usar Controllers e Rotas REST
